@@ -19,14 +19,17 @@ describe('tests to do app', () => {
   cy.contains('Completed').click()
   cy.contains('learn HTML').should('exist')
 
-  })
-  it('removes completed tasks', () => {
+ })
+ it('removes completed tasks', () => {
   cy.contains('learn HTML').prev().check()
   cy.contains('Clear completed').click()
   cy.contains('Completed').click()
   cy.contains('learn HTML').should('not.exist')
-
-
+ })
+ it('checks all active tasks', () => {
+    cy.contains('3 items left').should('exist')
+    cy.get('label[for="toggle-all"]').click()
+    cy.contains('0 items left').should('exist')
   })
 })
 
